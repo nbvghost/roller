@@ -1,3 +1,3 @@
-protoc --go_out=. fj.proto
+protoc --go_out=. rolle.proto
 echo "create complete"
 pause
