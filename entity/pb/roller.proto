@@ -1,0 +1,16 @@
+syntax = "proto3";
+package pb;
+//操作信息
+message ActionState {
+    string Action = 2;
+    string Message = 3;
+}
+/*
+message Items {
+    repeated Item Items = 2;
+}
+message Item {
+    uint64 ItemID = 2;
+    uint64 ItemType = 4;
+    uint64 Quantity = 6;
+}*/

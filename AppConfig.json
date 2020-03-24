@@ -1,0 +1,25 @@
+{
+  "LogicServer": [
+    {"IP":"192.168.1.105","TcpPort": "9900","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9901","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9902","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9903","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9904","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9905","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9906","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9907","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9908","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.1.105","TcpPort": "9909","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"}
+  ],
+  "LogServer": "192.168.2.10:9090",
+  "LogDir": "log",
+  "Debug": true,
+  "RedisDBUrl": "127.0.0.1:6379",
+  "RedisDBPassword": "",
+  "RedisDB": 0,
+  "SessionExpires": 1800,
+  "PersistenceTime": 180,
+  "EnableHttps": false,
+  "CertFile": "ssl/fjsdk.s.erlou.com.pem",
+  "KeyFile":"ssl/fjsdk.s.erlou.com.key"
+}
