@@ -20,6 +20,6 @@
   "SessionExpires": 1800,
   "PersistenceTime": 180,
   "EnableHttps": false,
-  "CertFile": "ssl/fjsdk.s.erlou.com.pem",
-  "KeyFile":"ssl/fjsdk.s.erlou.com.key"
+  "CertFile": "ssl/cert.pem",
+  "KeyFile":"ssl/key.key"
 }
