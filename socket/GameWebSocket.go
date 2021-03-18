@@ -12,6 +12,7 @@ import (
 	"github.com/nbvghost/roller/entity/pb"
 	"github.com/nbvghost/roller/iface"
 	"github.com/nbvghost/roller/translation"
+	"github.com/nbvghost/roller/variable"
 
 	"github.com/nbvghost/gweb"
 	"github.com/nbvghost/gweb/conf"
@@ -49,7 +50,7 @@ type GameWebSocket struct {
 	//Redis *db.RedisConnector
 	//MessageProcessor *MessageProcessor
 	ILoginBridge iface.ILoginBridge
-	config       *entity.AppConfig
+	//config       *entity.AppConfig
 	protoMessage iface.IProtoMessage
 	//SupportMessageType int
 	//ItemAll map[mold.ItemID]map[mold.ItemType]mold.ItemIDItemType
@@ -256,12 +257,12 @@ func (ws *GameWebSocket) noticeSendForceOfflineAction(response http.ResponseWrit
 	response.Write(b)
 
 }
-func (ws *GameWebSocket) StartWebSocket(protoMessage iface.IProtoMessage, config *entity.AppConfig, logicIndex int) error {
+func (ws *GameWebSocket) StartWebSocket(protoMessage iface.IProtoMessage) error {
 	//logic.IP, logic.TcpPort
-	logic := config.LogicServer[logicIndex]
+	//logic := config.LogicServer[logicIndex]
 
 	var defaultHandler = http.DefaultServeMux
-	ws.config = config
+	//ws.config = config
 	ws.protoMessage = protoMessage
 	//http.Handle("/game/server", websocket.Handler(ws.WebSocketHandler))
 	http.HandleFunc("/game/server", ws.WebSocketHandler)
@@ -282,9 +283,9 @@ func (ws *GameWebSocket) StartWebSocket(protoMessage iface.IProtoMessage, config
 	glog.Trace("start websocket at：" + ws.Server.Addr)
 	var err error
 
-	if ws.config.EnableHttps {
-		conf.Config.TLSCertFile = config.CertFile
-		conf.Config.TLSKeyFile = config.KeyFile
+	if variable.AppConfig.EnableHttps {
+		conf.Config.TLSCertFile = variable.AppConfig.CertFile
+		conf.Config.TLSKeyFile = variable.AppConfig.KeyFile
 		//err = ws.Server.ListenAndServeTLS(ws.config.CertFile, ws.config.KeyFile)
 		gweb.StartServer(defaultHandler, nil, ws.Server)
 	} else {
@@ -333,7 +334,7 @@ func (ws *GameWebSocket) WebSocketHandler(response http.ResponseWriter, request 
 
 	} else {
 
-		UserID, _ = strconv.ParseUint(ws.ILoginBridge.CheckToke(token), 10, 64)
+		UserID, _ = strconv.ParseUint(ws.ILoginBridge.CheckToken(token), 10, 64)
 		if UserID == 0 {
 			err := ws.SendActionMessage(entity.LoginFailedInvalidToken, currentWebsocketUser)
 			if glog.Error(err) {

@@ -5,9 +5,6 @@ import (
 	"github.com/golang/protobuf/proto"
 
 	"github.com/nbvghost/roller/mold"
-
-	"github.com/nbvghost/gweb/tool"
-	"io/ioutil"
 )
 
 type Action struct {
@@ -95,32 +92,4 @@ func (as *ActionStatus) SmartData(success int32, s string, f string, data interf
 	}
 	return as
 }*/
-type LogicServerConfig struct {
-	IP      string
-	TcpPort string
-	DBUrl   string
-	//RpcPort string
-	//Offline bool
-}
-type AppConfig struct {
-	LogicServer     []LogicServerConfig
-	Debug           bool
-	LogServer       string
-	LogDir          string
-	RedisDBUrl      string
-	RedisDBPassword string
-	RedisDB         int
-	EnableHttps     bool
-	KeyFile         string
-	CertFile        string
-	SessionExpires  int64
-	PersistenceTime int64
-}
 
-func (ac *AppConfig) Load(fileName string) error {
-	b, err := ioutil.ReadFile(fileName)
-	if err == nil {
-		err = tool.JsonUnmarshal(b, ac)
-	}
-	return err
-}

@@ -1,12 +1,12 @@
-package db
+package middleware
 
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/nbvghost/roller/entity"
 	"github.com/nbvghost/roller/iface"
+	"github.com/nbvghost/roller/variable"
 	"reflect"
 
 	"runtime"
@@ -26,7 +26,7 @@ type keyType struct {
 }
 type RedisConnector struct {
 	_redisClient *redis.Client
-	config       *entity.AppConfig
+	//config       *entity.AppConfig
 	/*NotifyMessageChannel string
 	NotifyOfflineChannel string
 	BroadcastChannel     string
@@ -124,11 +124,11 @@ func (connector *RedisConnector) PubBroadcast() *redis.IntCmd {
 	BroadcastChannel.Msg.Payload = string(b)
 	return connector._redisClient.Publish(BroadcastChannel.Msg.Channel, BroadcastChannel.Msg)
 }
-func (connector *RedisConnector) createRedis(config *entity.AppConfig) *RedisConnector {
+func (connector *RedisConnector) createRedis() *RedisConnector {
 
 	connector.cacheKey = make(map[string]keyType)
 	connector.cacheHKey = make(map[string]keyType)
-	connector.config = config
+	//connector.config = config
 
 	connector._redisClient = connector.retryOpenRedisDB()
 
@@ -207,8 +207,8 @@ func (connector *RedisConnector) createRedis(config *entity.AppConfig) *RedisCon
 
 func (connector *RedisConnector) retryOpenRedisDB() *redis.Client {
 	_redisClient := redis.NewClient(&redis.Options{
-		Addr:     connector.config.RedisDBUrl,
-		Password: connector.config.RedisDBPassword, DB: connector.config.RedisDB,
+		Addr:     variable.AppConfig.Redis.Host,
+		Password: variable.AppConfig.Redis.Password, DB: variable.AppConfig.Redis.DB,
 		MinIdleConns: runtime.NumCPU() * 10,
 		DialTimeout:  time.Second * 60,
 		ReadTimeout:  time.Minute,
@@ -370,7 +370,7 @@ func (connector *RedisConnector) HSet(UserID uint64, Field string, Value iface.I
 
 	//boolCmd := connector._redisClient.HSet(key, strconv.FormatUint(Value.GetID(), 10), string(b))
 	boolCmd := connector._redisClient.HSet(key, Field, string(b))
-	connector._redisClient.Expire(key, time.Duration(connector.config.SessionExpires)*time.Second)
+	connector._redisClient.Expire(key, time.Duration(variable.AppConfig.SessionExpires)*time.Second)
 	return boolCmd.Err()
 }
 func (connector *RedisConnector) HGet(UserID uint64, Field string, SetValue iface.ISQLModels) (err error) {
@@ -390,7 +390,7 @@ func (connector *RedisConnector) HGet(UserID uint64, Field string, SetValue ifac
 		return err
 	}
 	connector.addCacheHKey(SetValue, UserID, key)
-	return connector._redisClient.Expire(key, time.Duration(connector.config.SessionExpires)*time.Second).Err()
+	return connector._redisClient.Expire(key, time.Duration(variable.AppConfig.SessionExpires)*time.Second).Err()
 }
 func (connector *RedisConnector) HDel(table iface.ISQLModels, UserID uint64, Fields ...string) int64 {
 	intCmd := connector._redisClient.HDel(connector.createRedisKey(table, UserID), Fields...)
@@ -405,7 +405,7 @@ func (connector *RedisConnector) Set(UserID uint64, Value iface.ISQLModels) erro
 	if glog.Error(err) {
 		return err
 	}
-	boolCmd := connector._redisClient.Set(key, string(b), time.Duration(connector.config.SessionExpires)*time.Second)
+	boolCmd := connector._redisClient.Set(key, string(b), time.Duration(variable.AppConfig.SessionExpires)*time.Second)
 
 	//connector._redisClient.Expire(key, time.Duration(connector.config.SessionExpires)*time.Second)
 
@@ -427,7 +427,7 @@ func (connector *RedisConnector) Get(UserID uint64, SetValue iface.ISQLModels) (
 		return err
 	}
 	connector.addCacheKey(SetValue, UserID, key)
-	connector._redisClient.Expire(key, time.Duration(connector.config.SessionExpires)*time.Second)
+	connector._redisClient.Expire(key, time.Duration(variable.AppConfig.SessionExpires)*time.Second)
 	return err
 }
 func (connector *RedisConnector) Del(table iface.ISQLModels, UserID uint64) int64 {

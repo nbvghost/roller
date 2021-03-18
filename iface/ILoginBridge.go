@@ -1,9 +1,9 @@
 package iface
 
 type ILoginBridge interface {
-	Online(UserID uint64, cluster ICluster) (IUser, error)
+	Online(UserID uint64, cluster ICluster) (IRole, error)
 	Offline(UserID uint64, cluster ICluster)
-	CheckToke(Token string) string
+	CheckToken(Token string) string
 	/*GetAS(ActionCode ac.KV, args ...interface{}) *pb.ActionStatus
 	CreateGameInfoByUserID(DB *gorm.DB, Redis *redis.Client, User *dao.User, DataTableID dao.FactoryDataTableID) (err error, oldUser bool, factoryID uint64)
 	LoginBefore(DB *gorm.DB, cluster *Cluster) error

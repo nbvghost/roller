@@ -1,4 +1,4 @@
-package db
+package middleware
 
 import (
 	"github.com/jinzhu/gorm"
@@ -19,12 +19,12 @@ type connector struct {
 	isInit bool
 }
 
-func (c *connector) Init(config *entity.AppConfig, logicIndex int) {
+func (c *connector) Init(logicIndex int) {
 	if c.isInit {
 		panic("connector is init")
 	}
 
-	c.MySQL.createMySQL(config, logicIndex)
+	c.MySQL.createMySQL(logicIndex)
 	item := &mold.Item{}
 	if c.MySQL.GetMySQL().HasTable(item) == false {
 		c.MySQL.GetMySQL().Set("gorm:table_options", "AUTO_INCREMENT=10000").CreateTable(item)
@@ -61,6 +61,6 @@ func (c *connector) Init(config *entity.AppConfig, logicIndex int) {
 		}
 		c.MySQL.GetMySQL().AutoMigrate(c.MySQL.models[index])
 	}
-	c.Redis.createRedis(config)
+	c.Redis.createRedis()
 	c.isInit = true
 }

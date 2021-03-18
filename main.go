@@ -18,7 +18,7 @@ type LoginBridgeService struct {
 func (service *LoginBridgeService) Offline(UserID uint64, cluster iface.ICluster) {
 
 }
-func (service *LoginBridgeService) CheckToke(Token string) string {
+func (service *LoginBridgeService) CheckToken(Token string) string {
 
 	return tool.CipherDecrypterData(Token)
 }

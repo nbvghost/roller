@@ -1,16 +1,21 @@
 {
   "LogicServer": [
-    {"IP":"192.168.1.105","TcpPort": "9900","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9901","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9902","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9903","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9904","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9905","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9906","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9907","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9908","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
-    {"IP":"192.168.1.105","TcpPort": "9909","DBUrl": "root:123456@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"}
+    {"IP":"192.168.0.190","TcpPort": "9900","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9901","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9902","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9903","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9904","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9905","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9906","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9907","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9908","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"},
+    {"IP":"192.168.0.190","TcpPort": "9909","DBUrl": "root:274455411@tcp(127.0.0.1:3306)/test?charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=True&loc=Local"}
   ],
+  "ETCD": {
+    "Endpoints": ["127.0.0.1:12379", "127.0.0.1:22379", "127.0.0.1:32379"],
+    "Username": "",
+    "Password": ""
+  },
   "LogServer": "192.168.2.10:9090",
   "LogDir": "log",
   "Debug": true,
